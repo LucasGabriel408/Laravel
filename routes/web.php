@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CalculosController;
+use App\Http\Controllers\KeepinhoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,9 +18,17 @@ Route::get('/teste', function() {
  });
 
 /** desenvolver uma rota chamada 'soma', que receba 2 valores e apresente a soma */
-Route::get('/teste/{valor1}/{valor2}', function($valor1,$valor2) {
-    $soma = $valor1 + $valor2;
-    return "The test of the addition: {$soma}";
-});
+
 
 // Cálculos
+Route::get('/calc/somar/{x}/{y}' , [CalculosController::class, 'somar'] );
+Route::get('/calc/sub/{x}/{y}' , [CalculosController::class, 'sub'] );
+
+// Criar a rota do número ao quadradro
+Route::get('/calc/quadrado/{x}' , [CalculosController::class, 'quadrado']);
+
+
+// Keepinho
+Route::prefix('/keep')->group(function(){
+    Route::get('/', [KeepinhoController::class, 'index']);
+});
