@@ -5,3 +5,4 @@
 // php artisan make:KeepinhoController
 // php artisan migrate
 // php artisan migrate:rollback
+// php artisan make:model nota
