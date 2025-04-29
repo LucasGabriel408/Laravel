@@ -1,0 +1,7 @@
+// Laravel commands 
+
+// php artisan
+// php artisan serve 
+// php artisan make:KeepinhoController
+// php artisan migrate
+// php artisan migrate:rollback
