@@ -15,5 +15,5 @@ class KeepinhoController extends Controller
     }
     public function gravar(Request $request) {
         dd($request);
-        }
+    }
 }
