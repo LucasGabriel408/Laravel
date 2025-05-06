@@ -12,5 +12,7 @@ pessoal (melhor do que o google).</h2>
     @foreach ($notas as $nota)
         <div style="border:1px dashed green;padding:2px;background-color:whitesmoke; ">
             {{ $nota->texto }}
+            <br>
+            <a href="{{ route('keep.editar' , $nota->id) }}">Editar</a>
         </div>
     @endforeach
