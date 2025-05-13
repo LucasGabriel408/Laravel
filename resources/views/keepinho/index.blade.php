@@ -17,9 +17,8 @@ pessoal (melhor do que o google).</h2>
 </form>
 <hr>
     @foreach ($notas as $nota)
-        
         <div style="border:1px dashed green;padding:2px;background-color:whitesmoke; ">
-            <b>{{ $nota->titulo }} </b>
+            <b>{{ $nota->titulo }}</b>
             <br>
             {{ $nota->texto }}
             <br> 
