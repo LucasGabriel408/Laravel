@@ -2,6 +2,9 @@
 <h2>Seja Bem vindo ao keepinho, o seu assistente
 pessoal (melhor do que o google).</h2>
 <hr>
+<a href="{{ route('keep.lixeira') }}">🗑️ Lixeira</a>
+
+<hr>
 @if ($errors->any())
     <div style="color:red">
     <h3><b>Erro!</b></h3>
