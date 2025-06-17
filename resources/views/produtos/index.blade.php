@@ -12,9 +12,27 @@
                 <x-link-button href="{{  route('produtos.create') }}">
                     +Produto
                 </x-link-button>
+
+                @foreach ($produtos as $produto)
+                <br><br>
+                <b>{{ $produto->nome }}</b>
+                <br><br>
+                {{ $produto->preco }}
+                <br> <br>
+                {{ $produto->descricao }}
+                <br><br>
+                <img src="{{ asset('storage/' . $produto->imagem) }}" alt="Imagem do Produto">
+                <br>
+                <form action="{{ route('produtos.apagar', $produto->id) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <br>
+                <input type="submit" value="Apagar">
+                </form>
+                @endforeach
                 </div>
-               
             </div>
         </div>
     </div>
 </x-app-layout>
+    

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutosRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class ProdutosController extends Controller
      */
     public function index()
     {
-        return view('produtos.index');
+        $produtos = Produto::all();
+        return view('produtos/index' ,[
+            'produtos'=> $produtos,
+        ]);
     }
 
     /**
@@ -20,7 +24,9 @@ class ProdutosController extends Controller
      */
     public function create()
     {
+        
         return view('produtos.create');
+    
     }
 
     /**
@@ -28,7 +34,20 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        Produto::create($request->all());
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'preco' => 'required|numeric',
+            'descricao' => 'nullable|string',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $caminhoImagem = null;
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem');
+            $caminhoImagem = $imagem->store('produtos', 'public');
+            $validated['imagem'] = $caminhoImagem;
+    }
+        Produto::create($validated);
         return redirect()->route('produtos.index');
     }
 
@@ -59,8 +78,9 @@ class ProdutosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function apagar(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect()->route('produtos');
     }
 }

@@ -52,5 +52,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('produtos', ProdutosController::class);
+Route::delete('/apagar/{produto}', [ProdutosController::class, 'apagar'])->name('produtos.apagar');
 
 require __DIR__ . '/auth.php';
