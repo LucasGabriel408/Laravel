@@ -36,6 +36,23 @@
                             <x-input-error :messages="$errors->get('descricao')" class="mt-2" />
                         </div>
                         <br>
+
+                        <!-- Categoria -->
+                        <div>
+                            <x-input-label for="categoria" :value="__('categoria')" />
+                            <select id="categoria" name="categoria">
+                                <option value="">Selecione uma categoria</option>
+                                <!-- @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}"
+                                        {{ old('categoria') == $categoria->id ? 'selected' : '' }}>
+                                        {{ $categoria->nome }}
+                                    </option>
+                                @endforeach -->
+                            </select>
+                            <x-input-error :messages="$errors->get('categoria')" class="mt-2" />
+                        </div>
+
+                        <br>
                         <input type="file" name="imagem" id="imagem" accept="image/*">
                         <br><br>
                         <x-primary-button>

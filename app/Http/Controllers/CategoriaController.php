@@ -2,29 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProdutosRequest;
-use App\Models\Produto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class ProdutosController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $produtos = Produto::all();
-        return view('produtos/index' ,[
-            'produtos'=> $produtos,
-        ]);
+        return view('categorias.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {      
-        return view('produtos.create');
+    {
+        return view('categorias.create');
     }
 
     /**
@@ -32,22 +28,13 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
+        // Lógica para armazenar a categoria
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
-            'preco' => 'required|numeric',
             'descricao' => 'nullable|string',
-            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'categoria'=> '',
         ]);
-
-        $caminhoImagem = null;
-        if ($request->hasFile('imagem')) {
-            $imagem = $request->file('imagem');
-            $caminhoImagem = $imagem->store('produtos', 'public');
-            $validated['imagem'] = $caminhoImagem;
-        }
-        Produto::create($validated);
-        return redirect()->route('produtos.index');
+        Categoria::create($validated);
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -55,7 +42,15 @@ class ProdutosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Lógica para exibir uma categoria específica
+    }
+
+    /**
+     * Display to list all categories.
+     */
+    public function list()
+    {
+        // Lógica para listar todas as categorias
     }
 
     /**
@@ -63,7 +58,7 @@ class ProdutosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Lógica para exibir o formulário de edição de uma categoria
     }
 
     /**
@@ -71,15 +66,16 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Lógica para atualizar uma categoria
+        return redirect()->route('categorias.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function apagar(Produto $produto)
+    public function destroy(string $id)
     {
-        $produto->delete();
-        return redirect()->route('produtos');
+        // Lógica para excluir uma categoria
+        return redirect()->route('categorias.index');
     }
 }

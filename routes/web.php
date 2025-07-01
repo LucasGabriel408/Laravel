@@ -58,5 +58,9 @@ Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.in
 Route::get('/carrinho/store/{produto}', [CarrinhoController::class, 'store'])->name('carrinho.store');
 Route::get('/carrinho/remove/{produto}', [CarrinhoController::class, 'remove'])->name('carrinho.remove');
 
+// Categorias
+Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categorias.index');
+Route::get('/categorias/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('categorias.create');
+Route::post('/categorias/store', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categorias.store');
 
 require __DIR__ . '/auth.php';
