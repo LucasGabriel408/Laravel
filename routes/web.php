@@ -63,4 +63,13 @@ Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'ind
 Route::get('/categorias/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('categorias.create');
 Route::post('/categorias/store', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categorias.store');
 
+// Blog
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/posts', [App\Http\Controllers\BlogController::class, 'list'])->name('posts.list');
+
+// Categories in Blog
+Route::get('/blog/categories', [App\Http\Controllers\CategoryController::class, 'list'])->name('categories.list');
+Route::get('/blog/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+Route::get('/blog/categories/destroy/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
+
 require __DIR__ . '/auth.php';
